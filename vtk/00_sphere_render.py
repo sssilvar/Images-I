@@ -1,5 +1,5 @@
 import vtk
-from vtk.util.colors import alice_blue
+from vtkmodules.util.colors import alice_blue
 
 # Create a sphere
 sphere = vtk.vtkSphereSource()
