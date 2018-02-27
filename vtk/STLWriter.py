@@ -4,8 +4,8 @@ from vtk.util.colors import tomato
 filename = "files/test.stl"
 
 sphereSource = vtk.vtkSphereSource()
-sphereSource.SetPhiResolution(50)
-sphereSource.SetThetaResolution(5)
+sphereSource.SetPhiResolution(360)
+sphereSource.SetThetaResolution(360)
 sphereSource.Update()
 
 # Write the stl file to disk
