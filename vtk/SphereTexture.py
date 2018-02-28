@@ -10,7 +10,7 @@
 
 import vtk
 
-jpegfile = "files/masonry-wide.jpg"
+jpegfile = "/home/sssilvar/Downloads/Mercury-Bump.jpg"
 
 # Create a render window
 ren = vtk.vtkRenderer()
@@ -23,8 +23,8 @@ iren.SetRenderWindow(renWin)
 
 # Generate an sphere polydata
 sphere = vtk.vtkSphereSource()
-sphere.SetThetaResolution(12)
-sphere.SetPhiResolution(12)
+sphere.SetThetaResolution(120)
+sphere.SetPhiResolution(120)
 
 # Read the image data from a file
 reader = vtk.vtkJPEGReader()
