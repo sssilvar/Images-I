@@ -1,22 +1,30 @@
-import vtk
-import os
-import numpy as np
-from vtk.util.colors import azure
+#!/usr/bin/env python
 
-jpegfile = 'files/masonry-wide.jpg'
+##
+# This example shows how to apply an vtkImageData texture to an sphere
+# vtkPolyData object.
+# Note: Input jpg file can be located in the VTKData repository.
+#
+# @author JBallesteros
+##
+
+import vtk
+
+jpegfile = "files/masonry-wide.jpg"
 
 # Create a render window
 ren = vtk.vtkRenderer()
+ren.SetBackground(.1, .2, .5)
 renWin = vtk.vtkRenderWindow()
 renWin.AddRenderer(ren)
-renWin.SetSize(600, 600)
+renWin.SetSize(480, 480)
 iren = vtk.vtkRenderWindowInteractor()
 iren.SetRenderWindow(renWin)
 
 # Generate an sphere polydata
 sphere = vtk.vtkSphereSource()
-sphere.SetThetaResolution(360)
-sphere.SetPhiResolution(360)
+sphere.SetThetaResolution(12)
+sphere.SetPhiResolution(12)
 
 # Read the image data from a file
 reader = vtk.vtkJPEGReader()
@@ -46,7 +54,6 @@ else:
 
 # Create actor and set the mapper and the texture
 actor = vtk.vtkActor()
-actor.GetProperty().SetColor(azure)
 actor.SetMapper(mapper)
 actor.SetTexture(texture)
 
