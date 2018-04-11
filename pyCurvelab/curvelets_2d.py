@@ -2,6 +2,7 @@ from __future__ import print_function
 import os
 
 import pyct as ct
+import numpy as np
 from skimage.io import imread
 import matplotlib.pyplot as plt
 
@@ -13,13 +14,14 @@ if __name__ == '__main__':
     img = imread(filename, as_grey=True)
 
     # Setup curvelet params
-    A = ct.fdct2(img.shape, nbs=2, nba=64, ac=True, norm=False, vec=True, cpx=False)
+    A = ct.fdct2(img.shape, nbs=2, nba=360, ac=True, norm=False, vec=True, cpx=False)
 
     # Apply curvelet to the image
     f = A.fwd(img)
 
     print('Coefficients array:\n\t', f)
     print('Shape: ', f.shape)
+    print('Image shape vect: ', np.prod(img.shape))
 
     # Reconstruct the image
     y = A.inv(f)
