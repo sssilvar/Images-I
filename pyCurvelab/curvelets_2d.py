@@ -12,8 +12,6 @@ root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 def print_cl_info(f, scale, angle):
     try:
         data = f(scale, angle)
-        rav = np.where(np.array(f) == data.ravel())
-        print('Indexes: ', rav)
         print('Scale %d / angle %d: ' % (scale, angle),
               '\t Shape: ', np.shape(data))
     except IndexError:
@@ -57,6 +55,8 @@ if __name__ == '__main__':
         # Go over all the angles in the scale
         for angle in angles:
             print_cl_info(f, scale, angle)
+            ix = A.getindex(scale, angle)
+            print('Indexes: ', ix)
 
     # Reconstruct the image
     y = A.inv(f)
