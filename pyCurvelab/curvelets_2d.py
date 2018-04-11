@@ -43,7 +43,7 @@ if __name__ == '__main__':
         if scale == 0:
             angles = [0]
         elif scale == 1:
-            angles = range(0, number_of_angles)
+            angles = range(0, number_of_angles + 1)
         elif scale % 2 == 0:
             angles = range(0, int(scale * number_of_angles))
         elif scale % 2 != 0:
