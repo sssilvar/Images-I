@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os
+import sys
 
 import pyct as ct
 import numpy as np
@@ -55,7 +56,7 @@ if __name__ == '__main__':
 
             # Go over all the angles in the scale
             for angle in angles:
-                if scale != 2:
+                if scale != sys.argv[1]:
                     ix = A.index(scale)
                     # Delete data for testing
                     f[ix[0]:ix[1]] = 0
