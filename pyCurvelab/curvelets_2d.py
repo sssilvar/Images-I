@@ -56,6 +56,7 @@ if __name__ == '__main__':
         for angle in angles:
             print_cl_info(f, scale, angle)
             ix = A.index(scale, angle)
+            f[ix[0]:ix[1]] = 0
             print('Index: ', ix)
             # print('CLarray: %f | Indexed: %f' % (f(scale, angle, 0, 0), f[ix]))
 
