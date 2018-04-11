@@ -26,8 +26,8 @@ if __name__ == '__main__':
 
     fig, ax = plt.subplots(1, 2, sharey='all')
     ax[0].imshow(img, cmap='gray')
-    ax[0].title('Original')
+    ax[0].set_title('Original')
 
     ax[1].imshow(y, cmap='gray')
-    ax[1].title('Reconstructed')
+    ax[1].set_title('Reconstructed')
     plt.show()
