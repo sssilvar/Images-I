@@ -73,6 +73,6 @@ if __name__ == '__main__':
 
         ax[1].imshow(np.abs(y), cmap='gray')
         ax[1].set_title('Reconstructed (Only scale %d)' % th)
-        plt.savefig(os.path.join('/home/sssilvar/Documents/test/', 'scale_%d_removed.png' % s), bbox_inches='tight')
+        plt.savefig(os.path.join('/home/sssilvar/Documents/output/', 'scale_%d_removed.png' % s), bbox_inches='tight')
         plt.show()
         break
