@@ -14,7 +14,7 @@ if __name__ == '__main__':
     img = imread(filename, as_grey=True)
 
     # Setup curvelet params
-    A = ct.fdct2(img.shape, nbs=2, nba=2, ac=True, norm=False, vec=True, cpx=False)
+    A = ct.fdct2(img.shape, nbs=6, nba=32, ac=True, norm=False, vec=True, cpx=False)
 
     # Apply curvelet to the image
     f = A.fwd(img)
