@@ -24,8 +24,8 @@ if __name__ == '__main__':
     img = imread(filename, as_grey=True)
 
     # Parameters
-    number_of_scales = 4
-    number_of_angles = 32
+    number_of_scales = 7
+    number_of_angles = 4
 
     # Setup curvelet params
     A = ct.fdct2(img.shape, nbs=number_of_scales, nba=number_of_angles, ac=True, norm=False, vec=True, cpx=False)
