@@ -31,9 +31,12 @@ if __name__ == '__main__':
     # Print Information
     for scale in range(0, number_of_scales):
         for angle in range(0, number_of_angles):
-            data = f(scale, angle)
-            print('Scale %d / angle %d: ' % (scale, angle), data,
-                  '\n Shape: ', np.shape(data))
+            try:
+                data = f(scale, angle)
+                print('Scale %d / angle %d: ' % (scale, angle), data,
+                      '\n Shape: ', np.shape(data))
+            except IndexError:
+                print('[  ERROR  ] Index out of range')
 
     # Reconstruct the image
     y = A.inv(f)
