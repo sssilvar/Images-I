@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # Reconstruct the image
     y = A.inv(f)
 
-    fig, ax = plt.subplots(1, 2, sharey=True)
+    fig, ax = plt.subplots(1, 2, sharey='all')
     ax[0].imshow(img, cmap='gray')
     ax[0].plt.title('Original')
 
