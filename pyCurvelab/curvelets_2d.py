@@ -1,12 +1,16 @@
 from __future__ import print_function
+import os
 
 import pyct as ct
 from skimage.io import imread
 import matplotlib.pyplot as plt
 
+root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+
 if __name__ == '__main__':
     print('Loading image...')
-    img = imread('../opencv/img/brain.jpg', as_grey=True)
+    filename = os.path.join(root, 'opencv', 'img', 'brain.jpg')
+    img = imread(filename, as_grey=True)
 
     # Setup curvelet params
     A = ct.fdtc(img.shape, nbs=2, nba=32, ac=True, norm=False, vec=True, cpx=False)
