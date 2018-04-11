@@ -24,5 +24,10 @@ if __name__ == '__main__':
     # Reconstruct the image
     y = A.inv(f)
 
-    plt.imshow(y, cmap='gray')
+    fig, ax = plt.subplots(1, 2, sharey=True)
+    ax[0].imshow(img, cmap='gray')
+    ax[0].plt.title('Original')
+
+    ax[1].imshow(y, cmap='gray')
+    ax[1].plt.title('Reconstructed')
     plt.show()
