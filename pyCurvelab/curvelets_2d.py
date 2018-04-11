@@ -30,7 +30,7 @@ if __name__ == '__main__':
 
     # Print Information
     for scale in range(0, number_of_scales):
-        print('Scale 0: ', f(scale), '\n Shape: ', np.shape(f(scale)))
+        print('Scale %d: ' % scale, f(scale), '\n Shape: ', np.shape(f(scale)))
 
     # Reconstruct the image
     y = A.inv(f)
