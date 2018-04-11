@@ -25,6 +25,7 @@ if __name__ == '__main__':
     img = imread(filename, as_grey=True)
 
     # Parameters
+    th = int(sys.argv[1])
     number_of_scales = 7
     number_of_angles = 16
 
@@ -56,7 +57,7 @@ if __name__ == '__main__':
 
             # Go over all the angles in the scale
             for angle in angles:
-                if scale != sys.argv[1]:
+                if scale != th:
                     ix = A.index(scale)
                     # Delete data for testing
                     f[ix[0]:ix[1]] = 0
@@ -71,7 +72,7 @@ if __name__ == '__main__':
         ax[0].set_title('Original')
 
         ax[1].imshow(np.abs(y), cmap='gray')
-        ax[1].set_title('Reconstructed (Only scale %d)' % sys.argv[1])
+        ax[1].set_title('Reconstructed (Only scale %d)' % th)
         plt.savefig(os.path.join('/home/sssilvar/Documents/output/', 'scale_%d_removed.png' % s), bbox_inches='tight')
         plt.show()
         break
