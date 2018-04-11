@@ -14,7 +14,7 @@ if __name__ == '__main__':
     img = nb.load(filename)
 
     # Setup curvelet params
-    A = ct.fdct3d(img.shape, nbs=2, nba=360, ac=True, norm=False, vec=True, cpx=False)
+    A = ct.fdct3(img.shape, nbs=2, nba=360, ac=True, norm=False, vec=True, cpx=False)
 
     # Apply curvelet to the image
     f = A.fwd(img)
