@@ -25,7 +25,7 @@ if __name__ == '__main__':
 
     # Parameters
     number_of_scales = 7
-    number_of_angles = 4
+    number_of_angles = 16
 
     for s in range(0, number_of_scales):
         # Setup curvelet params
@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
             # Go over all the angles in the scale
             for angle in angles:
-                if scale <= 2:
+                if scale <= 3:
                     ix = A.index(scale)
                     # Delete data for testing
                     f[ix[0]:ix[1]] = 0
