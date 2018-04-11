@@ -11,8 +11,10 @@ root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 if __name__ == '__main__':
     print('Loading image...')
     filename = os.path.join(root, 'data', 'brainmask.mgz')
-    img = nb.load(filename).get_data().astype(np.float)[50:150, 50:150, 150:150]
-    print('Image shape vect: ', np.prod(img.shape))
+    img = nb.load(filename).get_data().astype(np.float)
+    img = img[50:150, 50:150, 50:150]
+    print('Image shape: ', img.shape)
+    print('Number of elements: ', np.prod(img.shape))
 
     # Setup curvelet params
     print('Applying Curvelet Transform...')
