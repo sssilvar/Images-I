@@ -41,7 +41,7 @@ if __name__ == '__main__':
     # Print Information
     for scale in range(0, number_of_scales):
         if scale == 0:
-            angles = 0
+            angles = [0]
         elif scale == 1:
             angles = range(0, number_of_angles)
         elif scale % 2 == 0:
