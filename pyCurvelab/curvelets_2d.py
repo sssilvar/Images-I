@@ -71,4 +71,5 @@ if __name__ == '__main__':
 
         ax[1].imshow(y, cmap='gray')
         ax[1].set_title('Reconstructed (Scale %d removed)' % s)
-        plt.show()
+        plt.savefig(os.path.join('/home/sssilvar/Documents/output/', 'scale_%d_removed.png' % s))
+        # plt.show()
