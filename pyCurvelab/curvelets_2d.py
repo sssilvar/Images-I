@@ -30,7 +30,10 @@ if __name__ == '__main__':
 
     # Print Information
     for scale in range(0, number_of_scales):
-        print('Scale %d: ' % scale, f(scale), '\n Shape: ', np.shape(f(scale)))
+        for angle in range(0, number_of_angles):
+            data = f(scale, angle)
+            print('Scale %d / angle %d: ' % (scale, angle), data,
+                  '\n Shape: ', np.shape(data))
 
     # Reconstruct the image
     y = A.inv(f)
