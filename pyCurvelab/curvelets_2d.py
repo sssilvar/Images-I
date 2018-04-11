@@ -14,7 +14,7 @@ if __name__ == '__main__':
     img = imread(filename, as_grey=True)
 
     # Parameters
-    number_of_scales = 2
+    number_of_scales = 4
     number_of_angles = 32
 
     # Setup curvelet params
@@ -33,10 +33,10 @@ if __name__ == '__main__':
         for angle in range(0, number_of_angles):
             try:
                 data = f(scale, angle)
-                print('Scale %d / angle %d: ' % (scale, angle), data,
-                      '\n Shape: ', np.shape(data))
+                print('Scale %d / angle %d: ' % (scale, angle),
+                      '\t Shape: ', np.shape(data))
             except IndexError:
-                print('[  ERROR  ] Index out of range')
+                print('[  ERROR  ] Index (%d, %d) out of range' % (scale, angle))
 
     # Reconstruct the image
     y = A.inv(f)
