@@ -19,12 +19,13 @@ if __name__ == '__main__':
     # Apply curvelet to the image
     f = A.fwd(img)
 
+    print('Data coefficients type: ', type(f))
     print('Coefficients array:\n\t', f)
     print('Shape: ', f.shape)
     print('Image shape vect: ', np.prod(img.shape))
 
     # Print Information
-    print('Scale 1:', f(1))
+    print('Scale 1:', f(sc=1))
 
     # Reconstruct the image
     y = A.inv(f)
