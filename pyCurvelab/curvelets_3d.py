@@ -11,7 +11,7 @@ root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 if __name__ == '__main__':
     print('Loading image...')
     filename = os.path.join(root, 'data', 'brainmask.mgz')
-    img = nb.load(filename).astype(np.float)
+    img = nb.load(filename).get_data().astype(np.float)
 
     # Setup curvelet params
     A = ct.fdct3(img.shape, nbs=2, nba=360, ac=True, norm=False, vec=True, cpx=False)
