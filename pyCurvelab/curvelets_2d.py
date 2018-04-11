@@ -21,7 +21,7 @@ def print_cl_info(f, scale, angle):
 
 if __name__ == '__main__':
     print('Loading image...')
-    filename = os.path.join(root, 'opencv', 'img', 'brain.jpg')
+    filename = os.path.join(root, 'pyCurvelab', 'test', 'gradient_020_to_025_solid_angle_to_sphere.png')
     img = imread(filename, as_grey=True)
 
     # Parameters
@@ -73,6 +73,6 @@ if __name__ == '__main__':
 
         ax[1].imshow(np.abs(y), cmap='gray')
         ax[1].set_title('Reconstructed (Only scale %d)' % th)
-        plt.savefig(os.path.join('/home/sssilvar/Documents/output/', 'scale_%d_removed.png' % s), bbox_inches='tight')
+        plt.savefig(os.path.join('/home/sssilvar/Documents/test/', 'scale_%d_removed.png' % s), bbox_inches='tight')
         plt.show()
         break
