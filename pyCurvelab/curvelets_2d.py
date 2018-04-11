@@ -39,7 +39,7 @@ if __name__ == '__main__':
     print('Image shape vect: ', np.prod(img.shape))
 
     # Print Information
-    for scale in range(0, number_of_scales):
+    for scale in range(0, number_of_scales + 1):
         if scale == 0:
             print_cl_info(f, scale, 0)
         elif scale == 1:
