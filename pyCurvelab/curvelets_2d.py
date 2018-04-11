@@ -23,6 +23,9 @@ if __name__ == '__main__':
     print('Shape: ', f.shape)
     print('Image shape vect: ', np.prod(img.shape))
 
+    # Print Information
+    print('Scale 1:', f(1))
+
     # Reconstruct the image
     y = A.inv(f)
 
