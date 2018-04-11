@@ -55,7 +55,7 @@ if __name__ == '__main__':
         # Go over all the angles in the scale
         for angle in angles:
             print_cl_info(f, scale, angle)
-            ix = A.getindex(scale, angle)
+            ix = A.getindex(loc=(scale, angle, 0, 0))
             print('Indexes: ', ix)
 
     # Reconstruct the image
