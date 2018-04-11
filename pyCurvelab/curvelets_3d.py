@@ -12,8 +12,10 @@ if __name__ == '__main__':
     print('Loading image...')
     filename = os.path.join(root, 'data', 'brainmask.mgz')
     img = nb.load(filename).get_data().astype(np.float)[50:150, 50:150, 150:150]
+    print('Image shape vect: ', np.prod(img.shape))
 
     # Setup curvelet params
+    print('Applying Curvelet Transform...')
     A = ct.fdct3(img.shape, nbs=2, nba=360, ac=True, norm=False, vec=True, cpx=False)
 
     # Apply curvelet to the image
@@ -21,11 +23,12 @@ if __name__ == '__main__':
 
     print('Coefficients array:\n\t', f)
     print('Shape: ', f.shape)
-    print('Image shape vect: ', np.prod(img.shape))
 
     # Reconstruct the image
+    print('Applying Curvelet Transform...')
     y = A.inv(f)
 
+    print('Plotting results')
     fig, ax = plt.subplots(1, 2, sharey='all')
     ax[0].imshow(img[:, :, 50], cmap='gray')
     ax[0].set_title('Original')
