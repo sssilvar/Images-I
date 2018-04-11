@@ -30,8 +30,7 @@ def test(dim=2, clen=10):
         else:
             print("Wavelets at finest scale")
 
-        print
-        f.shape
+        print(f.shape)
 
         if dim == 2:
             A = ct.fdct2(f.shape, 6, 32, isac[0], cpx=iscplx[0])
@@ -65,8 +64,7 @@ def normtest(dim=2, clen=10):
             sz = np.arange(64, 128)
 
         np.random.shuffle(sz)
-        print
-        sz[:dim]
+        print(sz[:dim])
 
         iscplx = [True, False]
         np.random.shuffle(iscplx)
