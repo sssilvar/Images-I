@@ -56,7 +56,7 @@ if __name__ == '__main__':
         for angle in angles:
             print_cl_info(f, scale, angle)
             ix = A.getindex(loc=(scale, angle, 0, 0))
-            print('Indexes: ', ix)
+            print('Indexes: ', ix, 'CLarray: %f | Indexed: %f' % (f(scale, angle, 0, 0), f[ix]))
 
     # Reconstruct the image
     y = A.inv(f)
