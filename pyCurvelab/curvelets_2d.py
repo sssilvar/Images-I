@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
         # Go over all the angles in the scale
         for angle in angles:
-            if scale == 1:
+            if scale == 2:
                 ix = A.index(scale, angle)
                 # Delete data for testing
                 f[ix[0]:ix[1]] = 0
