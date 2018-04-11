@@ -55,7 +55,7 @@ if __name__ == '__main__':
         # Go over all the angles in the scale
         for angle in angles:
             print_cl_info(f, scale, angle)
-            ix = A.index(loc=(scale, angle, 0, 0))
+            ix = A.index(scale, angle, 0, 0)
             print('Index: ', ix)
             # print('CLarray: %f | Indexed: %f' % (f(scale, angle, 0, 0), f[ix]))
 
