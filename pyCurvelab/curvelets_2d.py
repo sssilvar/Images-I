@@ -39,18 +39,22 @@ if __name__ == '__main__':
     print('Image shape vect: ', np.prod(img.shape))
 
     # Print Information
-    for scale in range(0, number_of_scales + 1):
+    for scale in range(0, number_of_scales):
         if scale == 0:
-            print_cl_info(f, scale, 0)
+            angles = 0
         elif scale == 1:
-            for angle in range(0, number_of_angles):
-                print_cl_info(f, scale, angle)
+            angles = range(0, number_of_angles)
         elif scale % 2 == 0:
-            for angle in range(0, int(scale * number_of_angles)):
-                print_cl_info(f, scale, angle)
+            angles = range(0, int(scale * number_of_angles))
         elif scale % 2 != 0:
-            for angle in range(0, int((scale - 1) * number_of_angles)):
-                print_cl_info(f, scale, angle)
+            angles = range(0, int((scale - 1) * number_of_angles))
+        else:
+            angles = []
+            raise ValueError('There is no angles inside the scale')
+
+        # Go over all the angles in the scale
+        for angle in angles:
+            print_cl_info(f, scale, angle)
 
     # Reconstruct the image
     y = A.inv(f)
