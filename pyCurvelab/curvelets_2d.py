@@ -13,6 +13,7 @@ def print_cl_info(f, scale, angle):
     try:
         data = f(scale, angle)
         rav = np.where(f == data.ravel())
+        print('Indexes: ', rav)
         print('Scale %d / angle %d: ' % (scale, angle),
               '\t Shape: ', np.shape(data))
     except IndexError:
