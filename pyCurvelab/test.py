@@ -7,8 +7,7 @@ norm = np.linalg.norm
 
 def test(dim=2, clen=10):
     for i in xrange(clen):
-        print
-        "-----------------------------------"
+        print("-----------------------------------")
         if dim == 2:
             sz = np.arange(256, 513)
         elif dim == 3:
@@ -18,22 +17,18 @@ def test(dim=2, clen=10):
         iscplx = [True, False]
         np.random.shuffle(iscplx)
         if iscplx[0]:
-            print
-            "Complex input"
+            print("Complex input")
             f = np.array(sc.randn(*sz[:dim]) + sc.randn(*sz[:dim]) * 1j)
         else:
-            print
-            "Real input"
+            print("Real input")
             f = np.array(sc.randn(*sz[:dim]))
 
         isac = [True, False]
         np.random.shuffle(isac)
         if isac[0]:
-            print
-            "All curvelets"
+            print("All curvelets")
         else:
-            print
-            "Wavelets at finest scale"
+            print("Wavelets at finest scale")
 
         print
         f.shape
@@ -46,32 +41,24 @@ def test(dim=2, clen=10):
         x = A.fwd(f)
 
         if np.allclose(norm(f.flatten(), ord=2), norm(x, ord=2)):
-            print
-            'Energy check ok!'
+            print('Energy check ok!')
         else:
-            print
-            'Problem w energy test'
+            print('Problem w energy test')
 
         fr = A.inv(x)
         if np.allclose(f.flatten(), fr.flatten()):
-            print
-            'Inverse check ok!'
+            print('Inverse check ok!')
         else:
-            print
-            'Problem w inverse test'
+            print('Problem w inverse test')
 
-        print
-        "||f|| = ", norm(f.flatten(), ord=2), f.dtype
-        print
-        "||x|| = ", norm(x, ord=2), x.dtype
-        print
-        "||fr|| = ", norm(fr.flatten(), ord=2), fr.dtype
+        print("||f|| = ", norm(f.flatten(), ord=2), f.dtype)
+        print("||x|| = ", norm(x, ord=2), x.dtype)
+        print("||fr|| = ", norm(fr.flatten(), ord=2), fr.dtype)
 
 
 def normtest(dim=2, clen=10):
     for i in xrange(clen):
-        print
-        "-----------------------------------"
+        print("-----------------------------------")
         if dim == 2:
             sz = np.arange(256, 513)
         else:
@@ -87,25 +74,21 @@ def normtest(dim=2, clen=10):
         isac = [True, False]
         np.random.shuffle(isac)
         if isac[0]:
-            print
-            "All curvelets"
+            print("All curvelets")
         else:
-            print
-            "Wavelets at finest scale"
+            print("Wavelets at finest scale")
 
         if dim == 2:
             A = ct.fdct2(sz[:2], 6, 32, isac[0], norm=True, cpx=iscplx[0])
             pos = np.arange(A.range())
             np.random.shuffle(pos)
             if iscplx[0]:
-                print
-                "Complex input"
+                print("Complex input")
                 x = np.zeros(A.range(), dtype='complex')
                 v = np.random.rand()
                 x[pos[0]] = v + np.sqrt(1 - v ** 2) * 1j
             else:
-                print
-                "Real input"
+                print("Real input")
                 x = np.zeros(A.range())
                 x[pos[0]] = 1.
         elif dim == 3:
@@ -113,30 +96,24 @@ def normtest(dim=2, clen=10):
             pos = np.arange(A.range())
             np.random.shuffle(pos)
             if iscplx[0]:
-                print
-                "Complex input"
+                print("Complex input")
                 x = np.zeros(A.range(), dtype='complex')
                 v = np.random.rand()
                 x[pos[0]] = v + np.sqrt(1 - v ** 2) * 1j
             else:
-                print
-                "Real input"
+                print("Real input")
                 x = np.zeros(A.range())
                 x[pos[0]] = 1.
 
         f = A.inv(x)
 
         if np.allclose(norm(f.flatten(), ord=2), norm(x, ord=2)):
-            print
-            'Norm check ok!'
+            print('Norm check ok!')
         else:
-            print
-            'Problem w norm test'
+            print('Problem w norm test')
 
-        print
-        "||f|| = ", norm(f.flatten(), ord=2), f.dtype
-        print
-        "||x|| = ", norm(x, ord=2), x.dtype
+        print("||f|| = ", norm(f.flatten(), ord=2), f.dtype)
+        print("||x|| = ", norm(x, ord=2), x.dtype)
 
 
 if __name__ == '__main__':
