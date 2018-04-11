@@ -13,8 +13,12 @@ if __name__ == '__main__':
     filename = os.path.join(root, 'opencv', 'img', 'brain.jpg')
     img = imread(filename, as_grey=True)
 
+    # Parameters
+    number_of_scales = 2
+    number_of_angles = 32
+
     # Setup curvelet params
-    A = ct.fdct2(img.shape, nbs=2, nba=32, ac=True, norm=False, vec=True, cpx=False)
+    A = ct.fdct2(img.shape, nbs=number_of_scales, nba=number_of_angles, ac=True, norm=False, vec=True, cpx=False)
 
     # Apply curvelet to the image
     f = A.fwd(img)
@@ -25,8 +29,8 @@ if __name__ == '__main__':
     print('Image shape vect: ', np.prod(img.shape))
 
     # Print Information
-    print('Scale 0: ', f(0), '\n Shape: ', np.shape(f(0)))
-    print('Scale 1: ', f(1), '\n Shape: ', np.shape(f(1)))
+    for scale in range(0, number_of_scales):
+        print('Scale 0: ', f(scale), '\n Shape: ', np.shape(f(scale)))
 
     # Reconstruct the image
     y = A.inv(f)
