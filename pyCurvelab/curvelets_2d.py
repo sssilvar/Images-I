@@ -8,6 +8,16 @@ import matplotlib.pyplot as plt
 
 root = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
 
+
+def print_cl_info(f, scale, angle):
+    try:
+        data = f(scale, angle)
+        print('Scale %d / angle %d: ' % (scale, angle),
+              '\t Shape: ', np.shape(data))
+    except IndexError:
+        print('[  ERROR  ] Index (%d, %d) out of range' % (scale, angle))
+
+
 if __name__ == '__main__':
     print('Loading image...')
     filename = os.path.join(root, 'opencv', 'img', 'brain.jpg')
@@ -30,13 +40,17 @@ if __name__ == '__main__':
 
     # Print Information
     for scale in range(0, number_of_scales):
-        for angle in range(0, number_of_angles):
-            try:
-                data = f(scale, angle)
-                print('Scale %d / angle %d: ' % (scale, angle),
-                      '\t Shape: ', np.shape(data))
-            except IndexError:
-                print('[  ERROR  ] Index (%d, %d) out of range' % (scale, angle))
+        if scale == 0:
+            print_cl_info(f, scale, 0)
+        elif scale == 1:
+            for angle in range(0, number_of_angles):
+                print_cl_info(f, scale, angle)
+        elif scale % 2 == 0:
+            for angle in range(0, int(scale * number_of_angles)):
+                print_cl_info(f, scale, angle)
+        elif scale % 2 != 0:
+            for angle in range(0, int((scale - 1) * number_of_angles)):
+                print_cl_info(f, scale, angle)
 
     # Reconstruct the image
     y = A.inv(f)
