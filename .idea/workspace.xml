@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aadac4-6d5c-4dcc-8998-be196d398df3" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/api/get_and_update.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FreeSurfer/mri_convert_folder.py" beforeDir="false" afterPath="$PROJECT_DIR$/FreeSurfer/mri_convert_folder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/http_requests.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/post_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/get_and_update.py" beforeDir="false" afterPath="$PROJECT_DIR$/api/get_and_update.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,7 +14,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/funny_coding$http_requests.coverage" NAME="http_requests Coverage Results" MODIFIED="1526993277647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
-    <SUITE FILE_PATH="coverage/funny_coding$get_and_update.coverage" NAME="get_and_update Coverage Results" MODIFIED="1527001374707" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
+    <SUITE FILE_PATH="coverage/funny_coding$get_and_update.coverage" NAME="get_and_update Coverage Results" MODIFIED="1527002100889" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api" />
     <SUITE FILE_PATH="coverage/funny_coding$mri_convert_folder.coverage" NAME="mri_convert_folder Coverage Results" MODIFIED="1526997933389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/FreeSurfer" />
   </component>
   <component name="FileEditorManager">
@@ -36,11 +34,10 @@
       <file leaf-file-name="get_and_update.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/get_and_update.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="564">
-              <caret line="80" column="17" lean-forward="true" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
+            <state relative-caret-position="540">
+              <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <element signature="e#133#960#0" />
               </folding>
             </state>
           </provider>
@@ -220,20 +217,35 @@
       <option name="project" value="LOCAL" />
       <updated>1526630340009</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HTTP requests with ndArrays.">
+      <created>1527001861035</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1527001861036</updated>
+    </task>
+    <task id="LOCAL-00003" summary="HTTP requests with ndArrays.">
+      <created>1527002118804</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1527002118804</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-1" width="1600" height="1200" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32968035" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32968035" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32968035" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -257,7 +269,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="FreeSurfer mri_convert folder added." />
-    <option name="LAST_COMMIT_MESSAGE" value="FreeSurfer mri_convert folder added." />
+    <MESSAGE value="HTTP requests with ndArrays." />
+    <option name="LAST_COMMIT_MESSAGE" value="HTTP requests with ndArrays." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/api/post_data.py">
@@ -356,11 +369,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/get_and_update.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="564">
-          <caret line="80" column="17" lean-forward="true" selection-start-line="80" selection-start-column="17" selection-end-line="80" selection-end-column="17" />
+        <state relative-caret-position="540">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <element signature="e#133#960#0" />
           </folding>
         </state>
       </provider>

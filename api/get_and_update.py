@@ -35,6 +35,7 @@ def is_time_to_update(current_data, new_data):
     # If the date is newer and there is different data
     return today > last_updated and np.sum(conditions) > 0
 
+
 def cast_data(data):
     """
     Casts the data in order to be serializable as JSON.
