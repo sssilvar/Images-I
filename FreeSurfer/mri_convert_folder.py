@@ -12,6 +12,6 @@ if __name__ == '__main__':
                 if file.endswith(ext):
                     filename = os.path.join(root, file)
 
-                    cmd = 'mri_convert ' + filename + ' ' + os.path.join(output_folder, ext, file[:-(len(ext) +1)] + '.mgz') + ' -c'
+                    cmd = 'mri_convert ' + filename + ' ' + os.path.join(output_folder, ext, file[:-(len(ext) +1)] + '.nii') + ' -c'
                     print('[  OK  ] Running command: ' + cmd)
                     os.system(cmd)
