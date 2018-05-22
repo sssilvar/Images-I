@@ -60,8 +60,6 @@ if __name__ == '__main__':
     current_data = res['msg']
     new_data = current_data.copy()
 
-    new_data['currentAvgX'] = np.random.normal(1.5, 3, np.shape(current_data['currentAvgX']))
-
     if r.status_code is 200 and res['success'] and res['msg'] is not None:
 
         # Create some new fake data
