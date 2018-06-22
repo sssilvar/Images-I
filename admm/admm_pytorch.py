@@ -9,8 +9,8 @@ plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-dtype=torch.cuda.FloatTensor
-# dtype = torch.FloatTensor
+# dtype=torch.cuda.FloatTensor
+dtype = torch.FloatTensor
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -19,11 +19,11 @@ if __name__ == '__main__':
     # Number of non-structural features: dy
     # Number of centers: m
     # number_of_iterations: n_iter
-    dx_list = [300, 1000, 3000]  #, 10000]
-    dy = 20
+    dx_list = [10] #, 1000, 3000]  #, 10000]
+    dy = 20000
     m = 10
-    n_iter = 20
-    rho = 0.1
+    n_iter = 100
+    rho = 0.01
 
     # Set a number of experiments
     n_experiments = 15
@@ -38,13 +38,16 @@ if __name__ == '__main__':
     global_folder = os.path.join(data_folder, 'global')
 
     for dx in dx_list:
-        n = int(dx * 0.8)
+        # n = int(dx * 0.8)
+        n = 3000
         # Set subject of observations based on the number of features
         for exp_i in range(n_experiments):
             # Create data
-            X = (torch.randn(n, dx) + torch.randn(n, dx)).type(dtype)
+            X = torch.randn(n, dx).type(dtype)
             W = torch.randn(dy, dx).t().type(dtype)
-            Y = torch.mm(X, W).type(dtype)
+            Y = (torch.mm(X, W) + 0.1 * torch.randn(n, dy)).type(dtype)
+
+            # W_full_data  = torch.solve(torch.mm(X.t(),X), torch.mm(X.t(),Y))
 
             global_data = {'X': X, 'W': W, 'Y': Y}
 
@@ -78,10 +81,10 @@ if __name__ == '__main__':
             for k in range(n_iter):
                 for i in range(m):
                     X_i, Y_i = X_split[i].type(dtype), Y_split[i].type(dtype)
-                    print('[  INFO  ] Processing center ', i, ' | Iteration : ', k)
-                    print('\t\t- Shape of matrix X: ', X_split[i].shape)
-                    print('\t\t- Shape of matrix Y: ', Y_split[i].shape)
-                    print('\t\t- Shape of matrix W: ', W_k.shape)
+                    print('[  INFO  ] Processing center ', i, ' | Iteration : ', k, ' Experiment ', exp_i + 1)
+                    # print('\t\t- Shape of matrix X: ', X_split[i].shape)
+                    # print('\t\t- Shape of matrix Y: ', Y_split[i].shape)
+                    # print('\t\t- Shape of matrix W: ', W_k.shape)
 
                     # Update W_k
                     term_1 = torch.inverse(torch.mm(X_i.t(), X_i) + rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
@@ -95,7 +98,7 @@ if __name__ == '__main__':
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
                 # Check error
-                error_i = torch.mean(torch.abs((W - W_tilde) / W)).type(torch.FloatTensor)
+                error_i = torch.mean(torch.abs((W - W_tilde)**2)).type(torch.FloatTensor)
                 print('\t\t- Error: ', error_i.numpy())
                 err[exp_i, k] = error_i
             legends.append('Exp. ' + str(exp_i + 1))
@@ -107,10 +110,10 @@ if __name__ == '__main__':
         plt.figure(figsize=(19.2, 10.8), dpi=150)
         plt.plot(err.numpy().T)
         plt.xlabel('Number of iterations')
-        plt.ylabel('Mean absolute error')
+        plt.ylabel('Mean square error')
         plt.legend(legends)
         plt.xticks(range(n_iter), x_ticks)
-        plt.title('MAE convergence (%d centers) | N = %d | dx = %d | dy = %d | rho %.2f' % (m, n, dx, dy, rho))
+        plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d | rho %.2f' % (m, n, dx, dy, rho))
 
         print('[  INFO  ] Saving plot...')
         plt.savefig(os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d.png' % (dx, dy, n)), bbox_inches='tight')
