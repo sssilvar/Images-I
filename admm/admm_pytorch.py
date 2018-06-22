@@ -1,15 +1,16 @@
 import os
 
-import numpy as np
-from numpy import dot, eye
-from numpy.linalg import solve
+
+import torch
 
 import matplotlib.pyplot as plt
 plt.switch_backend('agg')
 plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
-
+#dtype=torch.cuda.FloatTensor
+dtype=torch.FloatTensor
+#.type(dtype)
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -18,15 +19,16 @@ if __name__ == '__main__':
     # Number of non-structural features: dy
     # Number of centers: m
     # number_of_iterations: n_iter
-    dx_list = [10, 300, 1000, 3000]
-    dy = 20
-    m = 20
-    n_iter = 25
+    n = 1000
+    dx_list = [50, 500]
+    dy = 2
+    m = 10
+    n_iter = 20
     rho = 0.1
 
     # Set a number of experiments
     n_experiments = 15
-    err = np.empty([n_experiments, n_iter])
+    err = torch.empty([n_experiments, n_iter])
     legends = []
 
     # Folders
@@ -35,37 +37,37 @@ if __name__ == '__main__':
 
     for dx in dx_list:
         # Set subject of observations based on the number of features
-        n = 30 * dx
         for exp_i in range(n_experiments):
             # Create data
-            X = np.random.randn(n, dx) + np.random.randn(n, dx)
-            W = np.random.randn(dy, dx).T
-            Y = dot(X, W)
+            X = torch.add(torch.randn(n, dx), torch.randn(n, dx)).type(dtype)
+            W = torch.t(torch.randn(dy, dx)).type(dtype)
+            Y = torch.mm(X, W).type(dtype)
 
-            # global_data = {'X': X, 'W': W, 'Y': Y}
+            global_data = {'X': X, 'W': W, 'Y': Y}
 
-            # print('[  INFO  ] Saving global matrices')
-            # for key, data in global_data.items():
-            #     print('\t\t- Shape of matrix %s: %s' % (key, str(data.shape)))
-            #
-            #     filename = os.path.join(global_folder, key + '.npy')
-            #     np.save(filename, data)
+            print('[  INFO  ] Saving global matrices')
+            for key, data in global_data.items():
+                print('\t\t- Shape of matrix %s: %s' % (key, str(data.shape)))
+
+                # filename = os.path.join(global_folder, key + '.npy')
+                # np.save(filename, data)
+            print('\t\t- Number of observations: ', n)
 
             # Split data in number of centers
             print('\n\n[  INFO  ] Splitting data between %d centers' % m)
-            X_split = np.split(X, m, axis=0)
-            Y_split = np.split(Y, m, axis=0)
+            X_split = torch.split(X, m, dim=0)
+            Y_split = torch.split(Y, m, dim=0)
 
             # Start ADMM
             print('\n[  INFO  ] Starting ADMM')
             print('[  INFO  ] Initializing ~W')
 
-            W_tilde = np.zeros([dx, dy])
+            W_tilde = torch.zeros([dx, dy])
             # W_tilde = np.random.normal(1, 1, [dx, dy])
 
             # Initialize W_k and alpha_i
-            W_k = np.array([np.zeros([dx, dy])] * m)
-            alpha_k = np.array([np.zeros([dx, dy])] * m)
+            W_k = torch.stack([torch.zeros([dx, dy])] * m).type(dtype)
+            alpha_k = torch.stack([torch.zeros([dx, dy])] * m).type(dtype)
 
             # W_k = np.random.normal(1,1,[dx, dy])
             # alpha_k = np.random.normal(1, 1, [dx, dy])
@@ -78,18 +80,18 @@ if __name__ == '__main__':
                     print('\t\t- Shape of matrix Y: ', Y_split[i].shape)
 
                     # Update W_k
-                    term_1 = solve(dot(X_i.T, X_i) + rho * eye(dx), eye(dx))  # Shape: (dx x dx)
-                    term_2 = dot(X_i.T, Y_i) - alpha_k[i] + rho * W_tilde  # Shape: (dx x dy)
-                    W_k[i] = dot(term_1, term_2)
+                    term_1 = torch.potrs(torch.mul(torch.t(X_i), X_i) + rho * torch.eye(dx), torch.eye(dx))  # Shape: (dx x dx)
+                    term_2 = torch.mm(torch.t(X_i), Y_i) - alpha_k[i] + rho * W_tilde  # Shape: (dx x dy)
+                    W_k[i] = torch.mm(term_1, term_2)
                     print(W_tilde.shape)
                     print(W_k[i].shape)
 
                     # Update alpha_k
                     alpha_k[i] = alpha_k[i] + rho * (W_k[i] - W_tilde)
-                W_tilde = np.sum(alpha_k / rho + W_k, axis=0) / m
+                W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
                 # Check error
-                error_i = np.mean(np.abs((W - W_tilde) / W))
+                error_i = torch.mean(torch.abs((W - W_tilde) / W))
                 print(error_i)
                 err[exp_i, k] = error_i
             legends.append('Exp. ' + str(exp_i + 1))
@@ -99,7 +101,7 @@ if __name__ == '__main__':
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
         plt.figure(figsize=(19.2, 10.8), dpi=150)
-        plt.plot(err.T)
+        plt.plot(err.numpy().T)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean absolute error')
         plt.legend(legends)
