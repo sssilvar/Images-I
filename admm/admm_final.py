@@ -102,7 +102,7 @@ if __name__ == '__main__':
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean absolute error')
         plt.legend(legends)
-        plt.title('MAE convergence (%d centers) | N = %d | dx = %d | dy = %d | rho %d' % (m, n, dx, dy, rho))
+        plt.title('MAE convergence (%d centers) | N = %d | dx = %d | dy = %d | rho %.2f' % (m, n, dx, dy, rho))
 
         print('[  INFO  ] Saving plot...')
         plt.savefig(os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d.png' % (dx, dy, n)), bbox_inches='tight')
