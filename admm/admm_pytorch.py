@@ -55,8 +55,8 @@ if __name__ == '__main__':
 
             # Split data in number of centers
             print('\n\n[  INFO  ] Splitting data between %d centers' % m)
-            X_split = torch.chunk(X, m, dim=0)
-            Y_split = torch.chunk(Y, m, dim=0)
+            X_split = torch.chunk(X, m, dim=0, out=dtype)
+            Y_split = torch.chunk(Y, m, dim=0, out=dtype)
 
             # Start ADMM
             print('\n[  INFO  ] Starting ADMM')
