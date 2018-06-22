@@ -1,1 +1,6 @@
 *.vcf
+
+# output for ADMM
+X.npy
+W.npy
+Y.npy
