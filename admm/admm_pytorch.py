@@ -38,7 +38,7 @@ if __name__ == '__main__':
     global_folder = os.path.join(data_folder, 'global')
 
     for dx in dx_list:
-        n = int(dx / 10)
+        n = int(dx * 0.8)
         # Set subject of observations based on the number of features
         for exp_i in range(n_experiments):
             # Create data
