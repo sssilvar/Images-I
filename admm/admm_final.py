@@ -18,7 +18,6 @@ if __name__ == '__main__':
     # Number of non-structural features: dy
     # Number of centers: m
     # number_of_iterations: n_iter
-    n = 3000
     dx_list = [10, 300, 1000, 3000]
     dy = 20
     m = 20
@@ -35,6 +34,8 @@ if __name__ == '__main__':
     global_folder = os.path.join(data_folder, 'global')
 
     for dx in dx_list:
+        # Set subject of observations based on the number of features
+        n = 30 * dx
         for exp_i in range(n_experiments):
             # Create data
             X = np.random.randn(n, dx) + np.random.randn(n, dx)
