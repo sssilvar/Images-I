@@ -92,7 +92,7 @@ if __name__ == '__main__':
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
                 # Check error
-                error_i = torch.mean(torch.abs((W - W_tilde) / W))
+                error_i = torch.mean(torch.abs((W - W_tilde) / W)).type(torch.FloatTensor)
                 print('\t\t- Error: ', error_i.numpy())
                 err[exp_i, k] = error_i
             legends.append('Exp. ' + str(exp_i + 1))
