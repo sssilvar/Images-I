@@ -8,9 +8,9 @@ plt.switch_backend('agg')
 plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
-#dtype=torch.cuda.FloatTensor
-dtype=torch.FloatTensor
-#.type(dtype)
+
+dtype=torch.cuda.FloatTensor
+# dtype = torch.FloatTensor
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -19,11 +19,10 @@ if __name__ == '__main__':
     # Number of non-structural features: dy
     # Number of centers: m
     # number_of_iterations: n_iter
-    n = 1000
-    dx_list = [50, 500]
-    dy = 2
+    dx_list = [100, 300, 1000, 3000]
+    dy = 20
     m = 10
-    n_iter = 20
+    n_iter = 5
     rho = 0.1
 
     # Set a number of experiments
@@ -36,11 +35,12 @@ if __name__ == '__main__':
     global_folder = os.path.join(data_folder, 'global')
 
     for dx in dx_list:
+        n = 10 * dx
         # Set subject of observations based on the number of features
         for exp_i in range(n_experiments):
             # Create data
-            X = torch.add(torch.randn(n, dx), torch.randn(n, dx)).type(dtype)
-            W = torch.t(torch.randn(dy, dx)).type(dtype)
+            X = (torch.randn(n, dx) + torch.randn(n, dx)).type(dtype)
+            W = torch.randn(dy, dx).t().type(dtype)
             Y = torch.mm(X, W).type(dtype)
 
             global_data = {'X': X, 'W': W, 'Y': Y}
@@ -55,8 +55,8 @@ if __name__ == '__main__':
 
             # Split data in number of centers
             print('\n\n[  INFO  ] Splitting data between %d centers' % m)
-            X_split = torch.split(X, m, dim=0)
-            Y_split = torch.split(Y, m, dim=0)
+            X_split = torch.chunk(X, m, dim=0)
+            Y_split = torch.chunk(Y, m, dim=0)
 
             # Start ADMM
             print('\n[  INFO  ] Starting ADMM')
@@ -66,8 +66,8 @@ if __name__ == '__main__':
             # W_tilde = np.random.normal(1, 1, [dx, dy])
 
             # Initialize W_k and alpha_i
-            W_k = torch.stack([torch.zeros([dx, dy])] * m).type(dtype)
-            alpha_k = torch.stack([torch.zeros([dx, dy])] * m).type(dtype)
+            W_k = torch.stack([torch.zeros([dx, dy]).type(dtype)] * m)
+            alpha_k = torch.stack([torch.zeros([dx, dy]).type(dtype)] * m)
 
             # W_k = np.random.normal(1,1,[dx, dy])
             # alpha_k = np.random.normal(1, 1, [dx, dy])
@@ -78,10 +78,11 @@ if __name__ == '__main__':
                     print('[  INFO  ] Processing center ', i, ' | Iteration : ', k)
                     print('\t\t- Shape of matrix X: ', X_split[i].shape)
                     print('\t\t- Shape of matrix Y: ', Y_split[i].shape)
+                    print('\t\t- Shape of matrix W: ', W_k.shape)
 
                     # Update W_k
-                    term_1 = torch.potrs(torch.mul(torch.t(X_i), X_i) + rho * torch.eye(dx), torch.eye(dx))  # Shape: (dx x dx)
-                    term_2 = torch.mm(torch.t(X_i), Y_i) - alpha_k[i] + rho * W_tilde  # Shape: (dx x dy)
+                    term_1 = torch.inverse(torch.mm(X_i.t(), X_i) + rho * torch.eye(dx))  # Shape: (dx x dx)
+                    term_2 = torch.mm(X_i.t(), Y_i) - alpha_k[i] + rho * W_tilde  # Shape: (dx x dy)
                     W_k[i] = torch.mm(term_1, term_2)
                     print(W_tilde.shape)
                     print(W_k[i].shape)
@@ -92,7 +93,7 @@ if __name__ == '__main__':
 
                 # Check error
                 error_i = torch.mean(torch.abs((W - W_tilde) / W))
-                print(error_i)
+                print('\t\t- Error: ', error_i.numpy())
                 err[exp_i, k] = error_i
             legends.append('Exp. ' + str(exp_i + 1))
 
