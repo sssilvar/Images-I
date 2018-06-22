@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dy
     # Number of centers: m
     # number_of_iterations: n_iter
-    dx_list = [100, 300, 1000, 3000]
+    dx_list = [100] #, 300, 1000, 3000]
     dy = 20
     m = 10
     n_iter = 20
@@ -29,6 +29,9 @@ if __name__ == '__main__':
     n_experiments = 15
     err = torch.empty([n_experiments, n_iter])
     legends = []
+
+    # generate ticks for xlabel
+    x_ticks = range(1, n_iter + 1)
 
     # Folders
     data_folder = os.path.join(current_path, 'data')
@@ -106,6 +109,7 @@ if __name__ == '__main__':
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean absolute error')
         plt.legend(legends)
+        plt.xticks(range(n_iter), x_ticks)
         plt.title('MAE convergence (%d centers) | N = %d | dx = %d | dy = %d | rho %.2f' % (m, n, dx, dy, rho))
 
         print('[  INFO  ] Saving plot...')
