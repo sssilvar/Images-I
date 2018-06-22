@@ -81,7 +81,7 @@ if __name__ == '__main__':
                     print('\t\t- Shape of matrix W: ', W_k.shape)
 
                     # Update W_k
-                    term_1 = torch.inverse(torch.mm(X_i.t(), X_i) + rho * torch.eye(dx).type(dtype), out=dtype)  # Shape: (dx x dx)
+                    term_1 = torch.inverse(torch.mm(X_i.t(), X_i) + rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
                     term_2 = torch.mm(X_i.t(), Y_i) - alpha_k[i] + rho * W_tilde  # Shape: (dx x dy)
                     W_k[i] = torch.mm(term_1, term_2)
                     print(W_tilde.shape)
