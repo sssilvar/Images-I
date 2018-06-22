@@ -55,8 +55,8 @@ if __name__ == '__main__':
 
             # Split data in number of centers
             print('\n\n[  INFO  ] Splitting data between %d centers' % m)
-            X_split = torch.chunk(X, m, dim=0).type(dtype)
-            Y_split = torch.chunk(Y, m, dim=0).type(dtype)
+            X_split = torch.chunk(X, m, dim=0)
+            Y_split = torch.chunk(Y, m, dim=0)
 
             # Start ADMM
             print('\n[  INFO  ] Starting ADMM')
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
             for k in range(n_iter):
                 for i in range(m):
-                    X_i, Y_i = X_split[i], Y_split[i]
+                    X_i, Y_i = X_split[i].type(dtype), Y_split[i].type(dtype)
                     print('[  INFO  ] Processing center ', i, ' | Iteration : ', k)
                     print('\t\t- Shape of matrix X: ', X_split[i].shape)
                     print('\t\t- Shape of matrix Y: ', Y_split[i].shape)
