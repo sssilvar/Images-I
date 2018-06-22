@@ -62,7 +62,7 @@ if __name__ == '__main__':
             print('\n[  INFO  ] Starting ADMM')
             print('[  INFO  ] Initializing ~W')
 
-            W_tilde = torch.zeros([dx, dy])
+            W_tilde = torch.zeros([dx, dy]).type(dtype)
             # W_tilde = np.random.normal(1, 1, [dx, dy])
 
             # Initialize W_k and alpha_i
