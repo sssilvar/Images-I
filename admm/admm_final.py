@@ -5,6 +5,7 @@ from numpy import dot, eye
 from numpy.linalg import solve
 
 import matplotlib.pyplot as plt
+plt.switch_backend('agg')
 plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
