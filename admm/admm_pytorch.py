@@ -50,7 +50,7 @@ if __name__ == '__main__':
             W = torch.randn(dy, dx).t().type(dtype)
             Y = torch.mm(X, W).type(dtype) + 10 * torch.randn(n, dy).type(dtype)
 
-            X_t_X, LU = torch.gesv(torch.eye(dx), torch.mm(X.t(), X))
+            X_t_X, LU = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X.t(), X))
             W_full_data = torch.mm(X_t_X, torch.mm(X.t(), Y))
 
             global_data = {'X': X, 'W': W, 'Y': Y}
@@ -92,7 +92,7 @@ if __name__ == '__main__':
                     print('[  INFO  ] Processing center ', i, ' | Iteration : ', k, ' Experiment ', exp_i + 1)
 
                     # Update W_k
-                    term_1, _ = torch.gesv(torch.eye(dx), torch.mm(X_i.t(), X_i) + 0.5 * rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
+                    term_1, _ = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X_i.t(), X_i) + 0.5 * rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
                     term_2 = torch.mm(X_i.t(), Y_i) - 0.5 * alpha_k[i] + 0.5 * rho * W_tilde  # Shape: (dx x dy)
                     W_k[i] = torch.mm(term_1, term_2)
                     print(W_tilde.shape)
