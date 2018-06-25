@@ -22,7 +22,7 @@ if __name__ == '__main__':
     # number_of_iterations: n_iter
     dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 25
+    n = 15
     m = 5
     n_iter = 500
 
