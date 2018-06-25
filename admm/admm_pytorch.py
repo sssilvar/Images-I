@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 150000
+    dy = 15000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     m = 300
