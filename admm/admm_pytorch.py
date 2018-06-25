@@ -24,7 +24,7 @@ if __name__ == '__main__':
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 25
     m = 5
-    n_iter = 11
+    n_iter = 500
 
     # Set a number of experiments
     n_experiments = 4
