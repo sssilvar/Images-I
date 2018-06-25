@@ -22,13 +22,13 @@ if __name__ == '__main__':
     # number_of_iterations: n_iter
     dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 15
-    m = 5
+    n = 3000
+    m = 300
     n_iter = 500
 
     # Set a number of experiments
     n_experiments = 4
-    rho_vec = [1e-2, 10, 1000, 3000]
+    rho_vec = [1e-2, 10, 100, 1000]
 
     # Set error vector
     err = torch.empty([n_experiments, n_iter])
