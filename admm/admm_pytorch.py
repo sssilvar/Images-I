@@ -10,8 +10,8 @@ plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-dtype=torch.cuda.FloatTensor
-# dtype = torch.FloatTensor
+# dtype=torch.cuda.FloatTensor
+dtype = torch.FloatTensor
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 15000
+    dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     m = 300
