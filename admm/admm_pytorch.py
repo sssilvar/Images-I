@@ -22,8 +22,8 @@ if __name__ == '__main__':
     # number_of_iterations: n_iter
     dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 3000
-    m = 300
+    n = 25
+    m = 5
     n_iter = 11
 
     # Set a number of experiments
