@@ -1,3 +1,5 @@
 *.vcf
 
 admm_dx_*_dy_*_n_*.*
+data.npy
+statistics.npy

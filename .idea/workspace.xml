@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a9aadac4-6d5c-4dcc-8998-be196d398df3" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/admm/admm_pytorch.py" beforeDir="false" afterPath="$PROJECT_DIR$/admm/admm_pytorch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -31,11 +31,6 @@
               <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admm_dx_20_dy_20000_n_3000.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admm/data/admm_dx_20_dy_20000_n_3000.png">
-          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
     </leaf>
@@ -132,7 +127,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -144,6 +138,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -620,7 +615,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529931142708</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="ADMM - first try">
+      <created>1529932796582</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1529932796582</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -630,12 +632,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="-1" width="1600" height="1200" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.2849315" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2849315" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32968035" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32968035" />
@@ -900,9 +901,6 @@
     <entry file="file://$PROJECT_DIR$/admm/data/admm_dx_10_dy_20000_n_3000.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/admm/data/admm_dx_20_dy_20000_n_3000.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/admm/data/admm_dx_20_dy_20000_n_3000.eps">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -914,6 +912,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/admm/data/result.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admm/data/admm_dx_20_dy_20000_n_3000.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/admm/admm_pytorch.py">
