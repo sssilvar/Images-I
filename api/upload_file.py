@@ -16,18 +16,25 @@ def md5Checksum(filePath):
         return m.hexdigest()
 
 if __name__ == '__main__':
-    url = 'http://localhost:3300/centers/statistics/5b3383924bab0b42506ff78b'
+    # url = 'http://localhost:3300/centers/statistics/5b3383924bab0b42506ff78b'
+    url = 'http://localhost:3300/welford'
+
     data_file = 'data.npy'
     dl_data_file = 'statistics.npy'
 
     # Generate and save random data
-    data = np.random.normal(10, 10, [200000, 20])
+    data = np.random.normal(10, 10, [2000, 20])
     print('[  INFO  ] Data shape: ', data.shape)
     np.save(data_file, data)
 
     # Upload the data
     files = {'dataFile': open(data_file, 'rb')}
-    r = requests.post(url, files=files)
+    data_json = {
+        "iteration": 0,
+        "updatedBy": "5b3383924bab0b42506ff78b"
+    }
+    
+    r = requests.post(url, files=files, data=data_json)
 
     if r.status_code is 200:
         res = r.json()
