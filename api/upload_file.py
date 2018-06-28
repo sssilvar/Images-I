@@ -16,15 +16,23 @@ def md5Checksum(filePath):
         return m.hexdigest()
 
 if __name__ == '__main__':
-    # url = 'http://localhost:3300/centers/statistics/5b3383924bab0b42506ff78b'
-    url = 'http://localhost:3300/welford'
+    url = 'http://localhost:3300/centers/statistics/5b3383924bab0b42506ff78b'
+    # url = 'http://localhost:3300/welford/data'
 
     data_file = 'data.npy'
     dl_data_file = 'statistics.npy'
 
     # Generate and save random data
-    data = np.random.normal(10, 10, [2000, 20])
-    print('[  INFO  ] Data shape: ', data.shape)
+    data = {
+        'currentAvgX': np.random.normal(1,1,1860),
+        'currentStdX': np.random.normal(1,1,1860),
+        'currentAvgY': np.random.normal(1,1,1860),
+        'currentStdY': np.random.normal(1,1,1860),
+        'currentK': 20,
+        'busy': False,
+        'updatedBy': 'c6442cb6-b839-4d39-b874-15dca769e75d'  # TODO: this has to come from the key
+    }
+
     np.save(data_file, data)
 
     # Upload the data
@@ -60,5 +68,5 @@ if __name__ == '__main__':
                         print('\n[  INFO  ] Download successful!!!')
 
                         # Load new file
-                        dl_data = np.load(dl_data_file)
-                        print(np.linalg.norm(dl_data) - np.linalg.norm(data))
+                        dl_data = np.load(dl_data_file).item()
+                        print(np.linalg.norm(dl_data['currentAvgX']) - np.linalg.norm(data['currentAvgX']))
