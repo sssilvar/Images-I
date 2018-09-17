@@ -111,7 +111,7 @@ if __name__ == '__main__':
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
             if exp_i % 10 == 0:
-                dfs.append(pd.DataFrame(err.numpy().T, columns=[i for i in range(n_iter)]))
+                dfs.append(pd.DataFrame(err.numpy().T))
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
