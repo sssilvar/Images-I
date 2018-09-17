@@ -111,7 +111,9 @@ if __name__ == '__main__':
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
             if exp_i % 10 == 0:
-                dfs.append(pd.DataFrame(err.numpy().T))
+                df_i = pd.DataFrame(err.numpy().T)
+                dfs.append(df_i)
+                print(df_i.shape())
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
@@ -119,7 +121,7 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.plot(df.mean(), linewidth=0.3)
+            plt.plot(df.mean(axis=1), linewidth=0.3)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
