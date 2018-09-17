@@ -23,13 +23,14 @@ if __name__ == '__main__':
     dy = 9000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
-    m = 300
     n_iter = 10
+    n_sub_exp = 50
+    m = n_sub_exp * 5
     torch.manual_seed(42)
 
     # Set a number of experiments
-    n_experiments = 40
-    n_centers = [10, 30, 60, 100, 150]
+    n_experiments = n_sub_exp * 4
+    n_centers = [10, 30, 60, 100]
 
     rho_vec = [1e-2, 10, 100, 1000]
 
@@ -48,7 +49,7 @@ if __name__ == '__main__':
             # Set rho
             # rho = rho_vec[exp_i]
             rho = 0.001
-            m = n_centers[exp_i // 10]
+            m = n_centers[exp_i // n_sub_exp]
 
             # Create data
             X = torch.randn(n, dx).type(dtype)
@@ -110,7 +111,7 @@ if __name__ == '__main__':
 
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
-            if exp_i in [i + 9 for i in range(0, n_experiments + 1, 10)]:
+            if exp_i in [i + 9 for i in range(0, n_experiments + 1, n_sub_exp)]:
                 df_i = pd.DataFrame(err.numpy()[exp_i - 9:exp_i+1, :])
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
@@ -123,7 +124,7 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std())
+            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.2)
             plt.plot(df.mean())
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
