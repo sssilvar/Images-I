@@ -56,6 +56,7 @@ if __name__ == '__main__':
             global_data = {'X': X, 'W': W, 'Y': Y}
 
             # Print info
+            print('\n Experiment %d' % exp_i)
             print('[  INFO  ] Global matrices info:')
             for key, data in global_data.items():
                 print('\t\t- Shape of matrix %s: %s' % (key, str(data.shape)))
@@ -89,7 +90,7 @@ if __name__ == '__main__':
 
                 for i in range(m):
                     X_i, Y_i = X_split[i].type(dtype), Y_split[i].type(dtype)
-                    print('[  INFO  ] Processing center ', i, ' | Iteration : ', k, ' Experiment ', exp_i + 1)
+                    # print('[  INFO  ] Processing center ', i, ' | Iteration : ', k, ' Experiment ', exp_i + 1)
 
                     # Update W_k
                     term_1, _ = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X_i.t(), X_i) + 0.5 * rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
