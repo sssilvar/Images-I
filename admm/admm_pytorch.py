@@ -114,7 +114,8 @@ if __name__ == '__main__':
                 df_i = pd.DataFrame(err[exp_i - 10, exp_i:].numpy())
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
-                # Clean err array (Tensor)
+                print(df_i.shape)
+                print(df_i.mean())
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
