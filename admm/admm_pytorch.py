@@ -1,6 +1,7 @@
 import os
 
 import torch
+import pandas as pd
 
 import matplotlib.pyplot as plt
 
@@ -19,7 +20,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 25000
+    dy = 18000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     m = 300
@@ -35,6 +36,7 @@ if __name__ == '__main__':
     # Set error vector
     err = torch.empty([n_experiments, n_iter])
     legends = []
+    dfs = []
 
     # Folders
     data_folder = os.path.join(current_path, 'data')
@@ -107,14 +109,17 @@ if __name__ == '__main__':
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
             # legends.append('Rho = %.1E' % rho)
-            legends.append('%d centers' % m)
+            # legends.append('%d centers' % m)
+            if exp_i % 10 == 0:
+                dfs.append(pd.DataFrame(err.numpy().T, columns=[i for i in range(n_iter)]))
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
-        plt.plot(err.numpy().T, linewidth=0.3)
+        for df in dfs:
+            plt.plot(df.mean(), linewidth=0.3)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
