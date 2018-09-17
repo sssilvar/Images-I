@@ -109,12 +109,13 @@ if __name__ == '__main__':
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
             # legends.append('Rho = %.1E' % rho)
-            legends.append('%d centers' % m)
+            # legends.append('%d centers' % m)
             if exp_i % 10 == 0:
                 df_i = pd.DataFrame(err.numpy())
                 dfs.append(df_i)
-                print(df_i.mean().shape)
                 legends.append('%d centers' % m)
+                # Clean err array (Tensor)
+                err = torch.empty([n_experiments, n_iter])
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
