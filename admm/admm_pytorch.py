@@ -28,7 +28,7 @@ if __name__ == '__main__':
     torch.manual_seed(42)
 
     # Set a number of experiments
-    n_experiments = 50
+    n_experiments = 40
     n_centers = [10, 30, 60, 100, 150]
 
     rho_vec = [1e-2, 10, 100, 1000]
@@ -111,7 +111,7 @@ if __name__ == '__main__':
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
             if exp_i % 10 == 0:
-                df_i = pd.DataFrame(err.numpy().T)
+                df_i = pd.DataFrame(err.numpy())
                 dfs.append(df_i)
                 print(df_i.shape)
 
