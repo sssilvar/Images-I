@@ -26,7 +26,7 @@ if __name__ == '__main__':
     n_iter = 10
 
     # Set a number of experiments
-    n_experiments = 100
+    n_experiments = 10
     rho_vec = [1e-2, 10, 100, 1000]
 
     # Set error vector
@@ -41,7 +41,8 @@ if __name__ == '__main__':
         # Set subject of observations based on the number of features
         for exp_i in range(n_experiments):
             # Set rho
-            rho = rho_vec[exp_i]
+            # rho = rho_vec[exp_i]
+            rho = 0.001
 
             # Create data
             torch.manual_seed(42)
@@ -101,7 +102,7 @@ if __name__ == '__main__':
                     alpha_k[i] = alpha_k[i] + rho * (W_k[i] - W_tilde)
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
-            legends.append('Rho = %.1E' % rho)
+            # legends.append('Rho = %.1E' % rho)
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
@@ -111,7 +112,7 @@ if __name__ == '__main__':
         plt.plot(err.numpy().T)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
-        plt.legend(legends)
+        # plt.legend(legends)
         plt.margins(0.05, 0.07)
         plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
 
