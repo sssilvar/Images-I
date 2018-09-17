@@ -96,8 +96,8 @@ if __name__ == '__main__':
                     term_1, _ = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X_i.t(), X_i) + 0.5 * rho * torch.eye(dx).type(dtype))  # Shape: (dx x dx)
                     term_2 = torch.mm(X_i.t(), Y_i) - 0.5 * alpha_k[i] + 0.5 * rho * W_tilde  # Shape: (dx x dy)
                     W_k[i] = torch.mm(term_1, term_2)
-                    print(W_tilde.shape)
-                    print(W_k[i].shape)
+                    # print(W_tilde.shape)
+                    # print(W_k[i].shape)
 
                     # Update alpha_k
                     alpha_k[i] = alpha_k[i] + rho * (W_k[i] - W_tilde)
