@@ -24,6 +24,7 @@ if __name__ == '__main__':
     n = 3000
     m = 300
     n_iter = 10
+    torch.manual_seed(42)
 
     # Set a number of experiments
     n_experiments = 10
@@ -45,7 +46,6 @@ if __name__ == '__main__':
             rho = 0.001
 
             # Create data
-            torch.manual_seed(42)
             X = torch.randn(n, dx).type(dtype)
             W = torch.randn(dy, dx).t().type(dtype)
             Y = torch.mm(X, W).type(dtype) + 10 * torch.randn(n, dy).type(dtype)
