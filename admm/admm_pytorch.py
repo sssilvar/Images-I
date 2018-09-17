@@ -26,7 +26,7 @@ if __name__ == '__main__':
     n_iter = 10
 
     # Set a number of experiments
-    n_experiments = 4
+    n_experiments = 100
     rho_vec = [1e-2, 10, 100, 1000]
 
     # Set error vector
