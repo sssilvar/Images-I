@@ -110,7 +110,7 @@ if __name__ == '__main__':
 
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
-            if exp_i in [i-1 for i in range(0, 10, n_experiments + 1)]:
+            if exp_i in [i + 9 for i in range(0, 10, n_experiments + 1)]:
                 df_i = pd.DataFrame(err.numpy()[exp_i - 10:exp_i, :])
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
