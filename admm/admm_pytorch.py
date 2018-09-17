@@ -10,8 +10,8 @@ plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-dtype=torch.cuda.FloatTensor
-# dtype = torch.FloatTensor
+# dtype=torch.cuda.FloatTensor
+dtype = torch.FloatTensor
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -22,9 +22,9 @@ if __name__ == '__main__':
     # number_of_iterations: n_iter
     dy = 9000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 3000
+    n = 1200
     n_iter = 10
-    n_sub_exp = 10
+    n_sub_exp = 50
     m = n_sub_exp * 5
     torch.manual_seed(42)
 
@@ -54,11 +54,14 @@ if __name__ == '__main__':
             # Create data
             X = torch.randn(n, dx).type(dtype)
             W = torch.randn(dy, dx).t().type(dtype)
-            Y = torch.mm(X, W).type(dtype)
-            Y = Y + 0.05 * torch.norm(Y) * torch.randn(n, dy).type(dtype)
+            Y = torch.mm(X, W).type(dtype) + 5 * torch.randn(n, dy).type(dtype)
 
             X_t_X, LU = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X.t(), X))
             W_full_data = torch.mm(X_t_X, torch.mm(X.t(), Y))
+            
+            # print('Plotting')
+            # plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.2, color='b')
+            # plt.show() 
 
             global_data = {'X': X, 'W': W, 'Y': Y}
 
@@ -91,7 +94,7 @@ if __name__ == '__main__':
 
             for k in range(n_iter):
                 # Check error
-                error_i = torch.mean(torch.abs((W_full_data - W_tilde) ** 2)).type(torch.FloatTensor)
+                error_i = torch.mean(torch.abs((W - W_tilde) ** 2)).type(torch.FloatTensor)
                 print('\t\t- Error: ', error_i.numpy())
                 err[exp_i, k] = error_i
 
