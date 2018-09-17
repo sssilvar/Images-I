@@ -19,7 +19,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 50000
+    dy = 25000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     m = 300
@@ -27,7 +27,9 @@ if __name__ == '__main__':
     torch.manual_seed(42)
 
     # Set a number of experiments
-    n_experiments = 50
+    n_experiments = 60
+    n_centers = [10, 30, 60, 100, 150, 300]
+
     rho_vec = [1e-2, 10, 100, 1000]
 
     # Set error vector
@@ -44,6 +46,7 @@ if __name__ == '__main__':
             # Set rho
             # rho = rho_vec[exp_i]
             rho = 0.001
+            m = n_centers[exp_i // 6]
 
             # Create data
             X = torch.randn(n, dx).type(dtype)
@@ -56,7 +59,7 @@ if __name__ == '__main__':
             global_data = {'X': X, 'W': W, 'Y': Y}
 
             # Print info
-            print('\n Experiment %d' % exp_i)
+            print('\n[  INFO  ] ==== Experiment %d ====' % exp_i)
             print('[  INFO  ] Global matrices info:')
             for key, data in global_data.items():
                 print('\t\t- Shape of matrix %s: %s' % (key, str(data.shape)))
