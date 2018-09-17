@@ -113,7 +113,7 @@ if __name__ == '__main__':
             if exp_i % 10 == 0:
                 df_i = pd.DataFrame(err.numpy().T)
                 dfs.append(df_i)
-                print(df_i.shape())
+                print(df_i.shape)
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
