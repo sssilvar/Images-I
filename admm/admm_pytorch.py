@@ -110,8 +110,8 @@ if __name__ == '__main__':
 
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
-            if exp_i in [i + 9 for i in range(0, 10, n_experiments + 1)]:
-                df_i = pd.DataFrame(err.numpy()[exp_i - 10:exp_i, :])
+            if exp_i in np.linspace(0, n_experiments, n_experiments // 10, dtype=int):
+                df_i = pd.DataFrame(err.numpy()[exp_i - 9:exp_i+1, :])
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
                 print(df_i.shape)
