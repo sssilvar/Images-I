@@ -27,7 +27,7 @@ if __name__ == '__main__':
     torch.manual_seed(42)
 
     # Set a number of experiments
-    n_experiments = 10
+    n_experiments = 50
     rho_vec = [1e-2, 10, 100, 1000]
 
     # Set error vector
