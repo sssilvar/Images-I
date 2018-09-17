@@ -20,11 +20,11 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 25000
+    dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 1800
+    n = 3600
     n_iter = 10
-    n_sub_exp = 50
+    n_sub_exp = 100
     m = n_sub_exp * 5
     torch.manual_seed(42)
 
@@ -131,12 +131,12 @@ if __name__ == '__main__':
             plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             plt.plot(df.mean())
         plt.xlabel('Number of iterations')
-        plt.ylabel('Mean square error')
+        plt.ylabel('Mean Square Error')
         plt.legend(legends)
         plt.margins(0.05, 0.07)
         plt.yscale('log')
         plt.grid(b=True, which='minor', linestyle='-', alpha=0.2)
-        plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
+        # plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
 
         print('[  INFO  ] Saving plot...')
         plt.savefig(os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d.pdf' % (dx, dy, n)), bbox_inches='tight')
