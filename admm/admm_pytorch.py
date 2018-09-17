@@ -24,7 +24,7 @@ if __name__ == '__main__':
     n = 3000
     m = 300
     n_iter = 10
-    torch.manual_seed(42)
+    # torch.manual_seed(42)
 
     # Set a number of experiments
     n_experiments = 10
