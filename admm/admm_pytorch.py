@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.plot(df.mean(axis=1), linewidth=0.3)
+            plt.plot(df.mean(), linewidth=0.3)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
