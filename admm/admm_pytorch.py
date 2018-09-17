@@ -107,6 +107,7 @@ if __name__ == '__main__':
                 W_tilde = torch.sum(alpha_k / rho + W_k, dim=0) / m
 
             # legends.append('Rho = %.1E' % rho)
+            legends.append('%d centers' % m)
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
@@ -116,8 +117,9 @@ if __name__ == '__main__':
         plt.plot(err.numpy().T, linewidth=0.3)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
-        # plt.legend(legends)
+        plt.legend(legends)
         plt.margins(0.05, 0.07)
+        plt.yscale('log')
         plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
 
         print('[  INFO  ] Saving plot...')
