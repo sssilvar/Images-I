@@ -27,8 +27,8 @@ if __name__ == '__main__':
     torch.manual_seed(42)
 
     # Set a number of experiments
-    n_experiments = 60
-    n_centers = [10, 30, 60, 100, 150, 300]
+    n_experiments = 50
+    n_centers = [10, 30, 60, 100, 150]
 
     rho_vec = [1e-2, 10, 100, 1000]
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
             # Set rho
             # rho = rho_vec[exp_i]
             rho = 0.001
-            m = n_centers[exp_i // 6]
+            m = n_centers[exp_i // 10]
 
             # Create data
             X = torch.randn(n, dx).type(dtype)
