@@ -115,7 +115,7 @@ if __name__ == '__main__':
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
                 print(df_i.shape)
-                print(df_i.mean())
+                print(df_i.std())
 
         print('\n\n[   INFO  ] End of iterations')
         print('\t\t- Shape of matrix W:\t', W.shape)
@@ -123,7 +123,8 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std())
+            # plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std())
+            plt.plot(df.mean())
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
