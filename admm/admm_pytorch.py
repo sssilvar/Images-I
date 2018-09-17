@@ -20,7 +20,7 @@ if __name__ == '__main__':
     # Number of non-structural features: dx
     # Number of centers: m
     # number_of_iterations: n_iter
-    dy = 18000
+    dy = 9000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     m = 300
@@ -110,7 +110,7 @@ if __name__ == '__main__':
 
             # legends.append('Rho = %.1E' % rho)
             # legends.append('%d centers' % m)
-            if exp_i in [i for i in range(9,10, n_experiments)]:
+            if exp_i in [i-1 for i in range(0, 10, n_experiments + 1)]:
                 df_i = pd.DataFrame(err.numpy()[exp_i - 10:exp_i, :])
                 dfs.append(df_i)
                 legends.append('%d centers' % m)
@@ -123,7 +123,7 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.fill_between(df.columns.tolist(), df.mean() - df.std(), df.mean() + df.std())
+            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std())
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
