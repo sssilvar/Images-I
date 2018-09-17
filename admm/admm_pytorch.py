@@ -24,7 +24,7 @@ if __name__ == '__main__':
     n = 3000
     m = 300
     n_iter = 10
-    # torch.manual_seed(42)
+    torch.manual_seed(42)
 
     # Set a number of experiments
     n_experiments = 10
@@ -110,7 +110,7 @@ if __name__ == '__main__':
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
-        plt.plot(err.numpy().T)
+        plt.plot(err.numpy().T, linewidth=0.3)
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         # plt.legend(legends)
