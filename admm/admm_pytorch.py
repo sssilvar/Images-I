@@ -113,7 +113,7 @@ if __name__ == '__main__':
             if exp_i % 10 == 0:
                 df_i = pd.DataFrame(err.numpy())
                 dfs.append(df_i)
-                print(df_i.mean(axis=1).shape)
+                print(df_i.mean().shape)
                 legends.append('%d centers' % m)
 
         print('\n\n[   INFO  ] End of iterations')
