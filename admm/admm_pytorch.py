@@ -24,7 +24,7 @@ if __name__ == '__main__':
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 3000
     n_iter = 10
-    n_sub_exp = 50
+    n_sub_exp = 10
     m = n_sub_exp * 5
     torch.manual_seed(42)
 
@@ -124,13 +124,14 @@ if __name__ == '__main__':
 
         plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
         for df in dfs:
-            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.2)
+            plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             plt.plot(df.mean())
         plt.xlabel('Number of iterations')
         plt.ylabel('Mean square error')
         plt.legend(legends)
         plt.margins(0.05, 0.07)
         plt.yscale('log')
+        plt.grid(b=True, which='minor', linestyle='-', alpha=0.2)
         plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
 
         print('[  INFO  ] Saving plot...')
