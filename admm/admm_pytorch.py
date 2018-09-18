@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 
 plt.switch_backend('agg')
 plt.style.use('ggplot')
+plt.rcParams.update({'font.size': 22})
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -24,7 +25,7 @@ if __name__ == '__main__':
     dx_list = [20]  # , 1000, 3000]  #, 10000]
     n = 2400
     n_iter = 10
-    n_sub_exp = 200
+    n_sub_exp = 5
     m = n_sub_exp * 5
     torch.manual_seed(42)
 
