@@ -141,8 +141,8 @@ if __name__ == '__main__':
         plt.grid(b=True, which='minor', linestyle='-', alpha=0.2)
         # plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
 
-        X, Y = torch.FloatTensor(X), torch.FloatTensor(Y)
-        W, W_tilde = torch.FloatTensor(W), torch.FloatTensor(W_tilde)
+        X, Y = X.to('cpu'), Y.to('cpu')
+        W, W_tilde = W.to('cpu'), W_tilde.to('cpu')
         
         plt.subplot(222)
         plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.3, color='b')
