@@ -95,7 +95,8 @@ if __name__ == '__main__':
 
             for k in range(n_iter):
                 # Check error
-                error_i = torch.mean(torch.abs((W - W_tilde) ** 2)).type(torch.FloatTensor)
+                # error_i = torch.mean(torch.abs((W - W_tilde) ** 2)).type(torch.FloatTensor)
+                error_i = torch.norm(W - W_tilde).type(torch.FloatTensor)
                 print('\t\t- Error: ', error_i.numpy())
                 err[exp_i, k] = error_i
 
