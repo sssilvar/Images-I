@@ -10,8 +10,8 @@ plt.style.use('ggplot')
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
-# dtype=torch.cuda.FloatTensor
-dtype = torch.FloatTensor
+dtype=torch.cuda.FloatTensor
+# dtype = torch.FloatTensor
 
 if __name__ == '__main__':
     # Set data dimensions
@@ -22,15 +22,15 @@ if __name__ == '__main__':
     # number_of_iterations: n_iter
     dy = 50000
     dx_list = [20]  # , 1000, 3000]  #, 10000]
-    n = 3600
+    n = 2400
     n_iter = 10
-    n_sub_exp = 100
+    n_sub_exp = 200
     m = n_sub_exp * 5
     torch.manual_seed(42)
 
     # Set a number of experiments
     n_experiments = n_sub_exp * 4
-    n_centers = [10, 30, 60, 100]
+    n_centers = [10, 40, 60, 100]
 
     rho_vec = [1e-2, 10, 100, 1000]
 
