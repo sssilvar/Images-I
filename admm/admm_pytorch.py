@@ -128,7 +128,8 @@ if __name__ == '__main__':
         print('\t\t- Shape of matrix W:\t', W.shape)
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
-        plt.figure(figsize=(19.2 * 0.5, 10.8 * 0.5), dpi=150)
+        plt.figure(figsize=(19.2 * 0.7, 10.8 * 0.7), dpi=150)
+        plt.subplot(121)
         for df in dfs:
             plt.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             plt.plot(df.mean())
@@ -139,6 +140,13 @@ if __name__ == '__main__':
         plt.yscale('log')
         plt.grid(b=True, which='minor', linestyle='-', alpha=0.2)
         # plt.title('MSE convergence (%d centers) | N = %d | dx = %d | dy = %d' % (m, n, dx, dy))
+
+        plt.subplot(222)
+        plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.3, color='b')
+        
+        plt.subplot(224)
+        plt.scatter(Y.numpy()[0], torch.mm(X, W_tilde).numpy()[0], alpha=0.3, color='r')
+
 
         print('[  INFO  ] Saving plot...')
         plt.savefig(os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d.pdf' % (dx, dy, n)), bbox_inches='tight')
