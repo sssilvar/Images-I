@@ -55,7 +55,7 @@ if __name__ == '__main__':
             # Create data
             X = torch.randn(n, dx).type(dtype)
             W = torch.randn(dy, dx).t().type(dtype)
-            Y = torch.mm(X, W).type(dtype) + 5 * torch.randn(n, dy).type(dtype)
+            Y = torch.mm(X, W).type(dtype) + 2 * torch.randn(n, dy).type(dtype)
 
             X_t_X, LU = torch.gesv(torch.eye(dx).type(dtype), torch.mm(X.t(), X))
             W_full_data = torch.mm(X_t_X, torch.mm(X.t(), Y))
