@@ -155,6 +155,8 @@ if __name__ == '__main__':
 
 
         print('[  INFO  ] Saving plot...')
-        plt.savefig(os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d.png' % (dx, dy, n)), bbox_inches='tight')
+        out_file = os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d' % (dx, dy, n))
+        plt.savefig(out_file + '.png', bbox_inches='tight')
+        plt.savefig(out_file + '.pdf', bbox_inches='tight')
         print('\t\t[  OK  ] Plot saved!')
         # plt.show()
