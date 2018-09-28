@@ -147,7 +147,7 @@ if __name__ == '__main__':
         plt.subplot(122)
         plt.scatter(W.numpy()[0], W_tilde.numpy()[0], alpha=0.35, color='b', edgecolors='w')
         plt.xlabel('w')
-        plt.y_label('w_tilde (estimated)')
+        plt.ylabel('w_tilde (estimated)')
 
         # plt.subplot(222)
         # plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.3, color='b', edgecolors='w')
