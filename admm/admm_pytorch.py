@@ -145,7 +145,10 @@ if __name__ == '__main__':
         W, W_tilde = W.to('cpu'), W_tilde.to('cpu')
         
         plt.subplot(122)
-        plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.3, color='b', edgecolors='w')
+        plt.scatter(W.numpy()[0], W_tilde.numpy()[0], alpha=0.35, color='b', edgecolors='w')
+
+        # plt.subplot(222)
+        # plt.scatter(Y.numpy()[0], torch.mm(X, W).numpy()[0], alpha=0.3, color='b', edgecolors='w')
         
         # plt.subplot(224)
         # plt.scatter(Y.numpy()[0], torch.mm(X, W_tilde).numpy()[0], alpha=0.3, color='r')
