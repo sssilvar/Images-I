@@ -135,7 +135,7 @@ if __name__ == '__main__':
             ax0.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             ax0.plot(df.mean())
         ax0.set_xlabel('Number of iterations')
-        ax0.set_ylabel('$MSE(\mathbf{W}, \tilde{\mathbf{W})}$')
+        ax0.set_ylabel('$MSE(\mathbf{W}, \~\mathbf{W})$')
         ax0.legend(legends)
         ax0.margins(0.05, 0.07)
         ax0.set_yscale('log')
