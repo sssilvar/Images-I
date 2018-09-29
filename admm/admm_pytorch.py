@@ -129,12 +129,12 @@ if __name__ == '__main__':
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
         # plt.figure(figsize=(19.2 * 0.7, 10.8 * 0.7), dpi=150)
-        fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(9*2.4, 9))
+        fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(9*3, 9))
         for df in dfs:
             ax0.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             ax0.plot(df.mean())
         ax0.set_xlabel('Number of iterations')
-        ax0.set_ylabel('Mean Square Error')
+        ax0.set_ylabel('$MSE(\mathbf{W}, \widetilde{\mathbf{W})}$')
         ax0.legend(legends)
         ax0.margins(0.05, 0.07)
         ax0.set_yscale('log')
