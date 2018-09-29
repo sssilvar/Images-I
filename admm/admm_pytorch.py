@@ -129,7 +129,7 @@ if __name__ == '__main__':
         print('\t\t- Shape of matrix ~W:\t', W_tilde.shape)
 
         # plt.figure(figsize=(19.2 * 0.7, 10.8 * 0.7), dpi=150)
-        fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(9*4, 9), dpi=75)
+        fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(9*4, 9))
         for df in dfs:
             ax0.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             ax0.plot(df.mean())
@@ -159,6 +159,6 @@ if __name__ == '__main__':
         print('[  INFO  ] Saving plot...')
         out_file = os.path.join(current_path, 'data', 'admm_dx_%d_dy_%d_n_%d' % (dx, dy, n))
         plt.savefig(out_file + '.png', bbox_inches='tight')
-        plt.savefig(out_file + '.pdf', bbox_inches='tight')
+        plt.savefig(out_file + '.pdf', bbox_inches='tight', dpi=75)
         print('\t\t[  OK  ] Plot saved!')
         # plt.show()
