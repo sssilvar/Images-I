@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 plt.switch_backend('agg')
 plt.style.use('ggplot')
-plt.rcParams.update({'font.size': 22})
+plt.rcParams.update({'font.size': 36})
 
 current_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -130,7 +130,6 @@ if __name__ == '__main__':
 
         # plt.figure(figsize=(19.2 * 0.7, 10.8 * 0.7), dpi=150)
         fig, (ax0, ax1) = plt.subplots(1, 2, figsize=(9*4, 9))
-        plt.rcParams.update({'font.size': 40})
         for df in dfs:
             ax0.fill_between([i for i in range(n_iter)], df.mean() - df.std(), df.mean() + df.std(), alpha=0.6)
             ax0.plot(df.mean())
