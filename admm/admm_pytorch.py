@@ -144,9 +144,8 @@ if __name__ == '__main__':
         X, Y = X.to('cpu'), Y.to('cpu')
         W, W_tilde = W.to('cpu'), W_tilde.to('cpu')
         
-        ax1.subplot(122)
+        # Subplot 2: W vs W_tilde
         ax1.scatter(W.numpy()[0], W_tilde.numpy()[0], color='#011627', edgecolors='w')
-        
         ax1.set_xlabel('$\mathbf{w}$')
         ax1.set_ylabel('$\widetilde{\mathbf{w}}$ (estimated)')
 
