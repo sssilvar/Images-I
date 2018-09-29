@@ -135,7 +135,7 @@ if __name__ == '__main__':
             ax0.plot(df.mean())
         ax0.set_xlabel('Number of iterations')
         ax0.set_ylabel('Mean Square Error')
-        ax0.set_legend(legends)
+        ax0.legend(legends)
         ax0.margins(0.05, 0.07)
         ax0.set_yscale('log')
         ax0.grid(b=True, which='minor', linestyle='-', alpha=0.2)
