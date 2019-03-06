@@ -13,7 +13,7 @@ class MyWidget(QWidget):
 
         # Define some widgets
         self.button = QPushButton('Click me!')
-        self.text = QLabel('Te amo')
+        self.text = QLabel('Hola mundo')
         self.text.setAlignment(QtCore.Qt.AlignCenter)
 
         # Deine layout
