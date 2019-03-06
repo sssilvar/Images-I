@@ -10,7 +10,7 @@ root = dirname(realpath(__file__))
 
 
 def say_hello():
-    print('Hello! Button pressed')
+    print('Hello! Button pressed.')
 
 
 if __name__ == '__main__':
